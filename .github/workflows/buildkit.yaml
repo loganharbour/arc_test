@@ -1,0 +1,17 @@
+name: buildkit
+on:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: loganharbour-arctest
+
+    container:
+      image: ubuntu:latest
+
+    steps:
+      - name: show host
+        run: echo $BUILDKIT_HOST
+      - name: test connection
+        run: nc -zv 127.0.0.1 1234
