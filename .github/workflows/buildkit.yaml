@@ -8,10 +8,10 @@ jobs:
     runs-on: loganharbour-arctest
 
     container:
-      image: ubuntu:latest
+      image: moby/buildkit:latest
 
     steps:
       - name: show host
         run: echo $BUILDKIT_HOST
       - name: test connection
-        run: nc -zv 127.0.0.1 1234
+        run: buildctl --addr "$BUILDKIT_HOST" debug workers
