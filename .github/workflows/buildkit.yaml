@@ -11,9 +11,9 @@ jobs:
       image: moby/buildkit:latest
 
     steps:
-      - name: Debug pause
-        if: always()
-        run: sleep 3600
+      #- name: Debug pause
+      #  if: always()
+      #  run: sleep 3600
       - name: show host
         run: echo $BUILDKIT_HOST
       - name: test connection
