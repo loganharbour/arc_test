@@ -14,4 +14,4 @@ jobs:
       - name: copy inputs
         run: source /environment && moose_test-opt --copy-inputs tests
       - name: run tests
-        run: source /environment && cd moose_test/tests && moose_test-opt --run
+        run: source /environment && cd moose_test/tests && OMPI_ALLOW_RUN_AS_ROOT=1 OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1 moose_test-opt --run '-j 18'
