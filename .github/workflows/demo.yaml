@@ -1,4 +1,4 @@
-name: Actions Runner Controller Demo
+name: arc test
 on:
   workflow_dispatch:
 
@@ -8,14 +8,10 @@ jobs:
     runs-on: loganharbour-arctest
 
     container:
-      image: ubuntu:latest
+      image: idaholab/moose:2026.03.31-50c4748
 
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v5
-
-      - name: Show Ubuntu version
-        run: uname -a
-
-      - name: Run a simple script
-        run: echo "Hello from GitHub Actions on Ubuntu"
+      - name: copy inputs
+        run: moose_test-opt --copy-inputs tests
+      - name: run tests
+        run: cd moose_test/tests && moose_test-opt --run
