@@ -12,6 +12,6 @@ jobs:
 
     steps:
       - name: copy inputs
-        run: moose_test-opt --copy-inputs tests
+        run: source /environment && moose_test-opt --copy-inputs tests
       - name: run tests
-        run: cd moose_test/tests && moose_test-opt --run
+        run: source /environment && cd moose_test/tests && moose_test-opt --run
