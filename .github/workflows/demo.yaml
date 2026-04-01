@@ -11,6 +11,9 @@ jobs:
       image: idaholab/moose:2026.03.31-50c4748
 
     steps:
+      - uses: actions/checkout@v5
+      - name: test
+        run: echo "hello"
       - name: copy inputs
         run: source /environment && moose_test-opt --copy-inputs tests
       - name: run tests
