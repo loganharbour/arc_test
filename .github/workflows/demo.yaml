@@ -5,7 +5,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: loganharbour-arctest
+
+    container:
+      image: ubuntu:latest
 
     steps:
       - name: Check out the repo
