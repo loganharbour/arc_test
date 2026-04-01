@@ -11,10 +11,23 @@ jobs:
       image: moby/buildkit:latest
 
     steps:
-      #- name: Debug pause
-      #  if: always()
-      #  run: sleep 3600
-      - name: show host
-        run: echo $BUILDKIT_HOST
-      - name: test connection
-        run: buildctl --addr "$BUILDKIT_HOST" debug workers
+      - name: Create test Dockerfile
+        run: |
+          cat > Dockerfile <<'EOF'
+          FROM alpine:3.20
+          RUN echo "hello from buildkit" > /hello.txt
+          CMD ["cat", "/hello.txt"]
+          EOF
+
+      - name: Verify BuildKit is reachable
+        run: |
+          buildctl --addr "$BUILDKIT_HOST" debug workers
+
+      - name: Build to local files only
+        run: |
+          buildctl build \
+            --frontend dockerfile.v0 \
+            --local context=. \
+            --local dockerfile=. \
+            --opt filename=Dockerfile \
+            --output type=local,dest=out
