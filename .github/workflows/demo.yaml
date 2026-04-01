@@ -2,8 +2,17 @@ name: Actions Runner Controller Demo
 on:
   workflow_dispatch:
 
+
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: loganharbour-arctest
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-    - run: echo "🎉 This job uses runner scale set runners!"
+      - name: Check out the repo
+        uses: actions/checkout@v5
+
+      - name: Show Ubuntu version
+        run: uname -a
+
+      - name: Run a simple script
+        run: echo "Hello from GitHub Actions on Ubuntu"
