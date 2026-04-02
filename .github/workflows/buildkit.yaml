@@ -8,7 +8,7 @@ jobs:
     runs-on: loganharbour-arctest
 
     container:
-      image: moby/buildkit:latest
+      image: ghcr.io/loganharbour/buildctl/buildctl:latest
 
     steps:
       - name: Create test Dockerfile
